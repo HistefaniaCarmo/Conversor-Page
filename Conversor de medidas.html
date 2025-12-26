@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conversor de Medidas</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: #fff;
+      background: transparent;
+      text-align: center;
+    }
+
+    h1 {
+      font-family: comic sans ms;
+      font-size: 32px;
+      color: #ffffff;
+      text-shadow: 0 0 15px #d8b4fe;
+      margin-bottom: 25px;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 40px;
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      width: 320px;
+    }
+
+    input {
+      background: rgba(255, 255, 255, 0.15);
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      padding: 10px;
+      width: 100%;
+      margin-bottom: 15px;
+      text-align: center;
+      outline: none;
+      font-size: 13px;
+
+    }
+/* Chrome, Edge, Safari */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+    input::placeholder {
+      color: #ccc;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #7dd4fc72;
+      color: #fff;
+      border: 1px solid #7dd4fcad;
+      border-radius: 8px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #7dd3fc40;
+    }
+
+    .resultado {
+      margin-top: 20px;
+      font-weight: 500;
+      color: #e0f2fe;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <div class="fundo" style="position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;" aria-hidden="true">
+    <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block;">
+      <source src="fundo.mp4" type="video/mp4">
+    </video>
+    <!-- opcional: camada escura para melhorar contraste do texto -->
+    <div style="position:absolute;inset:0;background:rgba(0,0,0,0.25);"></div>
+  </div>
+
+  <h1>Conversor de Medidas</h1>
+
+  <div class="container">
+    <input type="number" id="distancia" placeholder="Digite a distância (em metros)" />
+    <button onclick="converter()">Converter</button>
+    <div class="resultado" id="saida"></div>
+  </div>
+
+  <script>
+    function converter() {
+      const distancia = parseFloat(document.getElementById('distancia').value);
+      const res = document.getElementById('saida');
+
+      if (isNaN(distancia)) {
+        res.innerHTML = 'Digite um número válido!';
+        return;
+      }
+
+      res.innerHTML = `
+        <p><strong>${distancia} metros</strong> equivalem a:</p>
+        <p>${(distancia / 1000).toFixed(3)} quilômetros (km)</p>
+        <p>${(distancia / 100).toFixed(3)} hectômetros (hm)</p>
+        <p>${(distancia / 10).toFixed(3)} decâmetros (dam)</p>
+        <p>${(distancia * 10).toFixed(1)} decímetros (dm)</p>
+        <p>${(distancia * 100).toFixed(1)} centímetros (cm)</p>
+        <p>${(distancia * 1000).toFixed(1)} milímetros (mm)</p>
+      `;
+    }
+  </script>
+</body>
+</html>
